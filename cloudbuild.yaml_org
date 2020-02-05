@@ -1,0 +1,40 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--tag', 'gcr.io/aqueous-cargo-242610/go-grpc-hello', '/workspace/endpoints/getting-started-grpc']
+
+#  - name: 'gcr.io/cloud-builders/kubectl'
+#    args: ['apply', '-f', '/workspace/endpoints/getting-started-grpc/deployment.yaml']
+#    env:
+#      - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUDSDK_COMPUTE_ZONE'
+#      - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLOUDSDK_CONTAINER_CLUSTER'
+#
+#  - name: 'gcr.io/cloud-builders/go'
+#    args: ['go', 'env']
+#    env: ['GOPATH=/tmp']
+#
+
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['set', 'image', 'deployment.apps/grpc-hello', 'echo=gcr.io/aqueous-cargo-242610/go-grpc-hello:latest']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUDSDK_COMPUTE_ZONE'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLOUDSDK_CONTAINER_CLUSTER'
+
+
+
+
+
+#kubectl set image deployment.apps/grpc-hello  echo=gcr.io/aqueous-cargo-242610/go-grpc-hello:latest
+
+
+#  - name: 'gcr.io/cloud-builders/go'
+#    args: ['mod', 'init', '/workspace/endpoints/getting-started-grpc']
+#    env: ['GOPATH=/tmp']
+#
+#  - name: 'gcr.io/cloud-builders/go'
+#    args: ['mod', 'vendor']
+#    env: ['GOPATH=/tmp']
+#
+  - name: 'gcr.io/cloud-builders/go'
+    args: ['run', '/workspace/endpoints/getting-started-grpc/client/main.go', '--api-key=AIzaSyCd81cfAlsqpUxLS8NB89dKI25t54NGC9s', '--addr=130.211.107.7:80', 'Test successful!']
+    env: ['GOPATH=/tmp']

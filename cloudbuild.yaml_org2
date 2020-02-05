@@ -1,0 +1,8 @@
+steps:
+  # Build the module.
+#  - name: mirror.gcr.io/library/golang
+#    env: ['GO111MODULE=on']
+#    args: ['go', 'build', 'github.com/stefanhansatos/golang-samples/endpoints/getting-started-grpc/server/...']
+#
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--tag', 'gcr.io/aqueous-cargo-242610/go-grpc-hello', '/workspace/endpoints/getting-started-grpc']
