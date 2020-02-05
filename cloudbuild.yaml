@@ -7,10 +7,9 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUDSDK_COMPUTE_ZONE'
       - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLOUDSDK_CONTAINER_CLUSTER'
-#
-#  - name: 'gcr.io/cloud-builders/kubectl'
-#    args: ['apply', '-f', '/workspace/endpoints/getting-started-grpc/deployment.yaml']
-#    env:
-#      - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUDSDK_COMPUTE_ZONE'
-#      - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLOUDSDK_CONTAINER_CLUSTER'
-#
+
+
+  - name: 'gcr.io/cloud-builders/go'
+    args: ['run', '/workspace/client/main.go', '--api-key=AIzaSyCd81cfAlsqpUxLS8NB89dKI25t54NGC9s', '--addr=34.77.182.157:80', 'Test successful!']
+    env:
+      - 'GOPATH=/tmp'
