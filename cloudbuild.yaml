@@ -1,9 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['builds', 'submit', '--tag', 'gcr.io/aqueous-cargo-242610/go-grpc-hello', '.']
+    args: ['builds', 'submit', '--tag', 'gcr.io/aqueous-cargo-242610/go-grpc-hello:3.0', '.']
 
   - name: 'gcr.io/cloud-builders/kubectl'
-    args: ['set', 'image', 'deployment.apps/grpc-hello', 'echo=gcr.io/aqueous-cargo-242610/go-grpc-hello:latest']
+    args: ['set', 'image', 'deployment.apps/grpc-hello', 'echo=gcr.io/aqueous-cargo-242610/go-grpc-hello:3.0']
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUDSDK_COMPUTE_ZONE'
       - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLOUDSDK_CONTAINER_CLUSTER'
